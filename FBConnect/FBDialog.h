@@ -50,6 +50,10 @@
  */
 @property(nonatomic, retain) NSMutableDictionary* params;
 
+@property(nonatomic, retain) NSURL* loadingUrl;
+@property(nonatomic, retain) UIWebView* webView;
+@property(nonatomic, retain) UIActivityIndicatorView* spinner;
+
 - (NSString *) getStringFromUrl: (NSString*) url needle:(NSString *) needle;
 
 - (id)initWithURL: (NSString *) loadingURL
@@ -75,6 +79,8 @@
  */
 - (void)loadURL:(NSString*)url
             get:(NSDictionary*)getParams;
+
+- (void)loadURL:(NSString*)url;
 
 /**
  * Hides the view and notifies delegates of success or cancellation.

@@ -45,7 +45,10 @@ static BOOL FBIsDeviceIPad() {
 @implementation FBDialog
 
 @synthesize delegate = _delegate,
-params   = _params;
+params   = _params,
+loadingUrl = _loadingUrl,
+webView = _webView,
+spinner = _spinner;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -506,6 +509,15 @@ params   = _params;
     
     [_loadingURL release];
     _loadingURL = [[self generateURL:url params:getParams] retain];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:_loadingURL];
+    
+    [_webView loadRequest:request];
+}
+
+- (void)loadURL:(NSString*)url {
+    
+    [_loadingURL release];
+    _loadingURL = [[url copy] retain];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:_loadingURL];
     
     [_webView loadRequest:request];
